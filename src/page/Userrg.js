@@ -18,19 +18,24 @@ const Userrg = () => {
     setFromData({ ...fromData, [e.target.name]: e.target.value });
   };
   const handelonSubmit = async () => {
-    const response = await axios.post(
+    axios.post(
       "http://localhost:8080/user/register",
-      fromData
-    );
-    if (response.status === 201) {
-      navigate("/UserLogIn")
-    }
-    if (response.status === 200) {
-      window.alert(response.message)
-    }
-    else {
-      console.log("error");
-    }
+      fromData)
+      .then(response => {
+        if (response.status === 201) {
+          navigate("/UserLogIn")
+        }
+        if (response.status === 200) {
+          window.alert(response.message)
+        }
+        else {
+          console.log("error");
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      })
+
 
 
 

@@ -5,20 +5,30 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Userlog = () => {
   const navigate = useNavigate();
-  const [token, setToken] = useState("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsImlhdCI6MTY4MDYxNzI5NH0.J3KIKFMjSZANbCzQAIhcbP0yuzbvLJRO_w80OUfSh38")
+  const [token, setToken] = useState()
   const [fromData, setFromData] = useState({})
   const handelChange = (e) => {
-    // e.preventDefault();
     setFromData({ ...fromData, [e.target.name]: e.target.value });
   };
   const handelonSubmit = async (e) => {
-    axios.post(
-      "http://localhost:8080/user/login",
-      fromData
-    ).then((res) => { res.Json() }).then((data) => {
-      console.log(data);
-      setToken(data.token)
-    }).catch(() => { console.log(); })
+    e.preventDefault();
+    axios.post('http://localhost:8080/user/login', fromData)
+      .then(response => {
+        setToken(response.data.token);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+
+
+
+    // axios.post(
+    //   "http://localhost:8080/user/login",
+    //   fromData
+    // ).then((res) => { res.Json() }).then((data) => {
+    //   console.log(data);
+    //   setToken(data.token)
+    // }).catch(() => { console.log(); })
 
     // console.log(res.Json);
     // if (res.status === 200) {
