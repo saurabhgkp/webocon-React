@@ -14,6 +14,8 @@ const Userlog = () => {
     e.preventDefault();
     axios.post('http://localhost:8080/user/login', fromData)
       .then(response => {
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('userId', response.data.userId);
         setToken(response.data.token);
       })
       .catch(error => {
@@ -22,20 +24,6 @@ const Userlog = () => {
 
 
 
-    // axios.post(
-    //   "http://localhost:8080/user/login",
-    //   fromData
-    // ).then((res) => { res.Json() }).then((data) => {
-    //   console.log(data);
-    //   setToken(data.token)
-    // }).catch(() => { console.log(); })
-
-    // console.log(res.Json);
-    // if (res.status === 200) {
-    //   setToken(res.token)
-    //   console.log(res);
-    //   // navigate("/User");
-    // }
   }
 
   console.log(token);
@@ -60,7 +48,7 @@ const Userlog = () => {
             <nav class="navbar">
 
               <ul class="nav navbar-nav">
-                <li class="active"><Link to="/">sign-up</Link></li>
+                <li class="active"><Link to="/Reg">sign-up</Link></li>
               </ul>
             </nav>
 
