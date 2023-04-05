@@ -1,10 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from "axios";
 import { Link } from "react-router-dom";
 const Navbar = () => {
-    const [id, setId] = (localStorage.getItem('userId'));
-
-
+    const [id, setId] = useState(localStorage.getItem('userId'));
     const handleLogout = () => {
         localStorage.removeItem('token');
         window.location.reload()
@@ -24,7 +22,7 @@ const Navbar = () => {
                     <div class="navbar-header">
                         <a class="navbar-brand" href="#">webOcon</a>
                     </div>
-                    <ul class="nav navbar-nav p-3">
+                    <ul class="nav navbar-nav">
                         <li><Link to="/">Home</Link></li>
                         <li class="active"><Link to="/Edit">Edit Profile</Link></li>
                         <li> <button className='mt-3 btn btn-danger ' onClick={handleLogout}> Log Out </button>  </li>

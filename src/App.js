@@ -23,8 +23,7 @@ function App() {
         <Route path="/Reg" element={<Userrg />} />
         <Route path="/LogIn" element={<Userlog />} />
         <Route path="/" element={<PrivateRoute Component={User} />} />
-        {/* <Route path="/Edit" element={<Edit />} /> */}
-        {/* <Route path="/User" element={<User />} /> */}
+
       </Routes>
 
 

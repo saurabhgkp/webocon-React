@@ -98,8 +98,8 @@ const Userrg = () => {
             </div>
             <button type="submit" class="btn btn-primary" onClick={handelonSubmit}>Sign Up</button>
             <nav class="navbar">
-              <ul class="nav navbar-nav">
-                <li><Link to="/LogIn">LogIn</Link></li>
+              <ul class="nav navbar-nav"><p>Already have an account?{' '}</p>
+                <li><Link to="/LogIn" className='btn btn-success'>LogIn</Link></li>
               </ul>
             </nav>
           </form>
