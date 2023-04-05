@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -10,19 +10,40 @@ const Userlog = () => {
   const handelChange = (e) => {
     setFromData({ ...fromData, [e.target.name]: e.target.value });
   };
+
+  useEffect(()=>{
+    if(localStorage.getItem('token')){
+      navigate('/')
+    }
+  },[])
   const handelonSubmit = async (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8080/user/login', fromData)
-      .then(response => {
+    // axios.post('http://localhost:8080/user/login', fromData)
+    //   .then(response => {
+    //     localStorage.setItem('token', response.data.token);
+    //     localStorage.setItem('userId', response.data.userId);
+    //     setToken(response.data.token);
+    //   })
+    //   .catch(error => {
+    //     console.error('Error:', error);
+    //   });
+    try{
+
+      const response =await  axios.post('http://localhost:8080/user/login', fromData)
+      if(response.status == 200){
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('userId', response.data.userId);
         setToken(response.data.token);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-
-
+        navigate('/')
+      }
+      
+      console.log(response)
+    }
+    catch(err){
+      console.log(err)
+    }
+      
+      
 
   }
 

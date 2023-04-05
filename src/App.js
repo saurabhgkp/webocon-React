@@ -18,11 +18,11 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/Edit" element={<PrivateRoute Component={Edit} />} />
 
         <Route path="/Reg" element={<Userrg />} />
         <Route path="/LogIn" element={<Userlog />} />
-        <Route path="/" element={<PrivateRoute Component={User} />} />
+        <Route path="/" element={<PrivateRoute><User/></PrivateRoute>} />
+        <Route path="/Edit" element={<PrivateRoute><Edit/></PrivateRoute>} />
 
       </Routes>
 
